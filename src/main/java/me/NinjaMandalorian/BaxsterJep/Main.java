@@ -7,7 +7,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-public class Game extends Canvas implements Runnable{
+import me.NinjaMandalorian.BaxsterJep.GameObjects.Player;
+import me.NinjaMandalorian.BaxsterJep.GameObjects.StalkerEnemy;
+
+public class Main extends Canvas implements Runnable{
  
 	private static final long serialVersionUID = 9047379336320826694L;
 
@@ -20,8 +23,9 @@ public class Game extends Canvas implements Runnable{
 	private Random r;
 	private Handler handler;
 	private HUD hud;
+	private Spawn spawner;
 	
-	public Game() {
+	public Main() {
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));
 		
@@ -31,15 +35,11 @@ public class Game extends Canvas implements Runnable{
 		trueHeight = windowSize.height;
 		
 		hud = new HUD();
-		
+		spawner = new Spawn(handler, hud);
 		r = new Random();
 		
 		handler.addObject(new Player(Width/2 -32 ,Height/2 - 32,ID.Player, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(Width),r.nextInt(Height),ID.Enemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(Width),r.nextInt(Height),ID.Enemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(Width),r.nextInt(Height),ID.Enemy, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(Width),r.nextInt(Height),ID.Enemy, handler));
-		
+		//handler.addObject(new BasicEnemy(r.nextInt(Width),r.nextInt(Height),ID.Enemy, handler));
 	}
 	
 	public synchronized void start() {
@@ -83,8 +83,8 @@ public class Game extends Canvas implements Runnable{
 				frames = 0;
 			}
 			
-			if(timer > 10000) {
-				handler.addObject(new BasicEnemy(r.nextInt(Width),r.nextInt(Height),ID.Enemy, handler));
+			if(timer > 1000) {
+				//handler.addObject(new BasicEnemy(r.nextInt(Width),r.nextInt(Height),ID.Enemy, handler));
 				timer = 0;
 			}
 		}
@@ -94,6 +94,7 @@ public class Game extends Canvas implements Runnable{
 	private void tick() {
 		handler.tick();
 		hud.tick();
+		spawner.tick();
 	}
 	
 	private void render() {
@@ -124,7 +125,16 @@ public class Game extends Canvas implements Runnable{
 			return var;
 	}
 	
+	public static float clampF(float var, float min, float max) {
+		if(var >= max) 
+			return var=max;
+		else if(var <= min)
+			return var=min;
+		else
+			return var;
+	}
+	
 	public static void main(String args[]) {
-		new Game();
+		new Main();
 	}
 }

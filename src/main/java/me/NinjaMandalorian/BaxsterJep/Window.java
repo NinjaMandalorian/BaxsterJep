@@ -13,7 +13,7 @@ public class Window extends Canvas{
 	
 	private JFrame frame;
 	
-	public Window(int width, int height, String title, Game game) {
+	public Window(int width, int height, String title, Main game) {
 		frame = new JFrame(title);
 		//frame.setPreferredSize(new Dimension(width,height));
 		//frame.setMaximumSize(new Dimension(width,height));
@@ -34,8 +34,8 @@ public class Window extends Canvas{
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {
 				Dimension size = getFrameSize();
-				Game.trueWidth = size.width;
-				Game.trueHeight = size.height;
+				Main.trueWidth = size.width;
+				Main.trueHeight = size.height;
 			}
 		});
 	}

@@ -1,10 +1,14 @@
-package me.NinjaMandalorian.BaxsterJep;
+package me.NinjaMandalorian.BaxsterJep.GameObjects;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
+import me.NinjaMandalorian.BaxsterJep.GameObject;
+import me.NinjaMandalorian.BaxsterJep.Handler;
+import me.NinjaMandalorian.BaxsterJep.ID;
 
 public class Trail extends GameObject{
 

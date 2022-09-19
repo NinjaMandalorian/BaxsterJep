@@ -1,8 +1,14 @@
-package me.NinjaMandalorian.BaxsterJep;
+package me.NinjaMandalorian.BaxsterJep.GameObjects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import me.NinjaMandalorian.BaxsterJep.GameObject;
+import me.NinjaMandalorian.BaxsterJep.HUD;
+import me.NinjaMandalorian.BaxsterJep.Handler;
+import me.NinjaMandalorian.BaxsterJep.ID;
+import me.NinjaMandalorian.BaxsterJep.Main;
 
 public class Player extends GameObject{
 
@@ -26,9 +32,10 @@ public class Player extends GameObject{
 		y += velY;
 		
 		//System.out.println(x + " "+ y);
-		x=Game.clamp(x, 0, Game.trueWidth-32);
-		y=Game.clamp(y, 0, Game.trueHeight-32);
+		x=Main.clamp(x, 0, Main.trueWidth-32);
+		y=Main.clamp(y, 0, Main.trueHeight-32);
 		checkCollision();
+		handler.addObject(new Trail(x,y, ID.Trail, new Color(220,220,220), 32, 32, (float) .010f, handler));
 	}
 
 	private void checkCollision() {
