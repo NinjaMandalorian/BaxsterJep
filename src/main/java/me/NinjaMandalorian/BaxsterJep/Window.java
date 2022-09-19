@@ -1,9 +1,10 @@
-package me.NinjaMandalorian.BaxsterJep.main;
+package me.NinjaMandalorian.BaxsterJep;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+
 import javax.swing.JFrame;
 
 public class Window extends Canvas{

@@ -1,4 +1,4 @@
-package me.NinjaMandalorian.BaxsterJep.main;
+package me.NinjaMandalorian.BaxsterJep;
 
 public enum ID {
 
