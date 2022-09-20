@@ -3,6 +3,7 @@ package me.NinjaMandalorian.BaxsterJep.GameObjects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 import me.NinjaMandalorian.BaxsterJep.GameObject;
 import me.NinjaMandalorian.BaxsterJep.HUD;
@@ -13,12 +14,15 @@ import me.NinjaMandalorian.BaxsterJep.Main;
 public class Player extends GameObject{
 
 	Handler handler;
+	HUD hud;
+	Random r;
 	
-	public Player(int x, int y, ID id, Handler handler) {
+	public Player(int x, int y, ID id, Handler handler, HUD hud) {
 		super(x, y, id);
 		// TODO Auto-generated constructor stub
 		this.handler = handler;
-		
+		this.hud = hud;
+		r = new Random();
 	}
 
 	public Rectangle getBounds() {
@@ -44,7 +48,22 @@ public class Player extends GameObject{
 			
 			if(tempObject.getId() == ID.Enemy) {
 				if(getBounds().intersects(tempObject.getBounds())) {
-					HUD.Health -= 2;
+					// Functions for all enemies
+					if(tempObject instanceof StalkerEnemy) {
+						int dist = r.nextInt(95-20) + 20;
+						tempObject.setX(tempObject.getX() + dist * (x > tempObject.getX() ? -1 : 1));
+						tempObject.setY(tempObject.getY() + dist * (y > tempObject.getY() ? -1 : 1));
+						HUD.Health -= 4;
+					}
+					else HUD.Health -= 2; // Else just does 2 damage per tick.
+				}
+			} else if(tempObject.getId() == ID.Item) {
+				if(getBounds().intersects(tempObject.getBounds())) {
+					// Functions for all Items
+					if(tempObject instanceof Coin) {
+						handler.removeObject(tempObject);
+						hud.setCoins(hud.getCoins() + 1);
+					}
 				}
 			}
 		}

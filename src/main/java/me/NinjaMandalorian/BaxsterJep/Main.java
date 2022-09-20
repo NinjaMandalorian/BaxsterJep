@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+import me.NinjaMandalorian.BaxsterJep.GameObjects.Coin;
 import me.NinjaMandalorian.BaxsterJep.GameObjects.Player;
 import me.NinjaMandalorian.BaxsterJep.GameObjects.StalkerEnemy;
 
@@ -38,7 +39,8 @@ public class Main extends Canvas implements Runnable{
 		spawner = new Spawn(handler, hud);
 		r = new Random();
 		
-		handler.addObject(new Player(Width/2 -32 ,Height/2 - 32,ID.Player, handler));
+		handler.addObject(new Player(Width/2 -32 ,Height/2 - 32,ID.Player, handler, hud));
+		handler.addObject(new Coin(r.nextInt(Width),r.nextInt(Height),ID.Item, handler));
 		//handler.addObject(new BasicEnemy(r.nextInt(Width),r.nextInt(Height),ID.Enemy, handler));
 	}
 	

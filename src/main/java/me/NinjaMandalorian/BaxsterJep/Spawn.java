@@ -26,7 +26,7 @@ public class Spawn {
 			hud.setLevel(hud.getLevel()+ 1);
 			
 			if(hud.getLevel() == 2) {
-				
+				handler.addObject(new StalkerEnemy(r.nextInt(Main.trueWidth), r.nextInt(Main.trueHeight), ID.Enemy, handler));
 			} else if(hud.getLevel() == 3) {
 				step = 500;
 				handler.addObject(new BasicEnemy(r.nextInt(Main.trueWidth), r.nextInt(Main.trueHeight), ID.Enemy, handler));

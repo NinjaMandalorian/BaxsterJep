@@ -11,6 +11,8 @@ public class HUD {
 	private int score = 0;
 	private int level = 1;
 	
+	private int coins = 0;
+	
 	public void tick() {
 		Health = Main.clamp(Health, 0, 100);
 		greenValue = Main.clamp(Health*255/100, 0, 255);
@@ -28,6 +30,7 @@ public class HUD {
 		
 		g.drawString("Score:  " + score, 10, 64);
 		g.drawString("Level:  " + level, 10, 80);
+		g.drawString("Coins:  " + coins, 10, 96);
 	}
 	
 	public void setScore(int score) {
@@ -44,6 +47,14 @@ public class HUD {
 	
 	public int getLevel() {
 		return level;
+	}
+	
+	public void setCoins(int coins) {
+		this.coins = coins;
+	}
+	
+	public int getCoins() {
+		return coins;
 	}
 	
 }
