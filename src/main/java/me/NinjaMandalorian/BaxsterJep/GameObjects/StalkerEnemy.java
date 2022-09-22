@@ -3,6 +3,7 @@ package me.NinjaMandalorian.BaxsterJep.GameObjects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 import me.NinjaMandalorian.BaxsterJep.GameObject;
 import me.NinjaMandalorian.BaxsterJep.Handler;
@@ -13,6 +14,8 @@ public class StalkerEnemy extends GameObject{
 
 	private Handler handler;
 	private GameObject player;
+	private Random r;
+	private float mult;
 	
 	public StalkerEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
@@ -24,8 +27,12 @@ public class StalkerEnemy extends GameObject{
 			if(handler.object.get(i).getId() == ID.Player) {player = handler.object.get(i); i = handler.object.size();}
 		}
 		
+		r = new Random();
+		
 		velX = 0;
 		velY=-0;
+		
+		mult = .75f + (0.5f * r.nextFloat());
 	}
 
 	public Rectangle getBounds() {
@@ -45,12 +52,13 @@ public class StalkerEnemy extends GameObject{
 		handler.addObject(new Trail(x,y, ID.Trail, new Color(100,0,0), 16, 16, (float) .015f, handler));
 		
 		
+		
 		float xDist = x - player.getX() - 16;
 		float yDist = y - player.getY() - 16;
 		float distance = (float) Math.sqrt( (x-player.getX()) * (x-player.getX()) + (y-player.getY()) * (y-player.getY()) );
-		velX = (int) ((-3.0/distance) * xDist);
+		velX = (int) ((-3.0/distance) * xDist * mult);
 		if(Math.abs((-3.0/distance) * xDist) < 1) {velX = (int) (-xDist / Math.abs(xDist));}
-		velY = (int) ((-3.0/distance) * yDist);
+		velY = (int) ((-3.0/distance) * yDist * mult);
 		if(Math.abs((-3.0/distance) * yDist) < 1) {velY = (int) (-yDist / Math.abs(yDist));}
 		
 		//velY = (int) ((-1.0/distance) * yDist);

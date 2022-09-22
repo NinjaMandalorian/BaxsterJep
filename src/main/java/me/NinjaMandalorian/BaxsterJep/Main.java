@@ -9,7 +9,6 @@ import java.util.Random;
 
 import me.NinjaMandalorian.BaxsterJep.GameObjects.Coin;
 import me.NinjaMandalorian.BaxsterJep.GameObjects.Player;
-import me.NinjaMandalorian.BaxsterJep.GameObjects.StalkerEnemy;
 
 public class Main extends Canvas implements Runnable{
  
